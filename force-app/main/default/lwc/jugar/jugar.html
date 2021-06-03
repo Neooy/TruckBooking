@@ -1,0 +1,66 @@
+
+<template>
+    <lightning-card title="TRUCK LIST" icon-name="custom:custom31">
+        <div class="slds-m-around_medium">
+        <template if:true={trucks.data}>
+            <lightning-datatable
+                    key-field="Id"
+                    data={trucks.data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    onrowaction={callRowaction}>
+                </lightning-datatable>        
+        </template>
+        </div>
+        <div class="slds-m-around_small slds-align_absolute-center" > 
+            <lightning-button variant="brand"  class="slds-p-around_small" label=" << Previous" title="PREVIOUS" onclick={navigatePrevious}></lightning-button>
+            <lightning-button id="act" variant="brand"  class="slds-p-around_small" label="Next >>" title="NEXT" onclick={handleSelect}></lightning-button>
+        </div>
+    </lightning-card>
+
+     <template if:true={bShowModal}>
+         <lightning-card class="slds-m-around_medium slds-p-around_small">
+        <lightning-card title="Booking Details" icon-name="action:new_case"></lightning-card>
+            <lightning-card if:true={show}>
+      
+                <div class="slds-box slds-box_small slds-m-around_small slds-p-around_medium " >
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Name">Name:</dt>
+                        <dd class="slds-item_detail slds-truncate">{record.Name}</dd>
+                        <dt class="slds-item_label slds-truncate" title="Maximum Load">Maximum Load(In Kgs):</dt>
+                        <dd class="slds-item_detail slds-truncate">{record.Maximum_Load__c} </dd>
+                        <dt class="slds-item_label slds-truncate" title="Cost">Cost per K.M. (in INR)</dt>
+                        <dd class="slds-item_detail slds-truncate">₹{record.Total_Cost__c}</dd>
+                        
+                    </dl>
+                </div>
+                <div class="slds-box slds-box_small slds-m-around_small slds-p-around_medium ">
+                <lightning-record-edit-form  
+                onsuccess={showToast}              
+                object-api-name="Truck_Booking__c" >
+                    <lightning-input-field field-name="Truck__c"></lightning-input-field>
+                    <lightning-input-field  field-name="Truck_Issue__c"></lightning-input-field>
+                    <lightning-input-field  field-name="Truck_Withdrawal__c"></lightning-input-field>
+                    <lightning-input-field  field-name="Pick_Up_Point__c"></lightning-input-field>
+                    <lightning-icon class="slds-m-around_small slds-align_absolute-center" icon-name="utility:sort"></lightning-icon>
+                    <lightning-input-field field-name="Drop_Point__c"></lightning-input-field>
+                    
+                    
+                   
+                    <lightning-input-field field-name="Truck_Load__c"></lightning-input-field>
+                    <lightning-button class="slds-m-left_x-small" type="submit" label="Add Approximate Load" onclick={handleButton} >
+                    </lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            class="slds-m-around_small slds-align_absolute-center"
+                            type="submit"
+                            label="Create new" onclick={showSuccessToast}>
+                        </lightning-button>
+                        
+                </lightning-record-edit-form>
+            </div>
+            </lightning-card>
+            
+        </lightning-card>
+    </template>
+</template>

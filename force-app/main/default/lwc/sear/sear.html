@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="TRUCK BOOKING" icon-name="custom:custom31">
+        <div class="slds-m-around_medium">
+
+            <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="PICK UP"
+                value={searchKey}></lightning-input>
+                <lightning-input type="search" onchange={handleKeyChanges} class="slds-m-bottom_small" label="DROP UP"
+                value={kay}></lightning-input>
+                <c-image-track key-field="Id" data={data} columns={columns} >
+            </c-image-track>
+            </br>
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button label="Previous" variant="brand" icon-name="utility:chevronleft" onclick={previousHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+                
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button label="Next"  variant="brand" icon-name="utility:chevronright" icon-position="right"
+                        onclick={nextHandler}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

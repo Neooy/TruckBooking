@@ -1,0 +1,33 @@
+<template>
+    <div>
+    <lightning-card title="Pick Upp">
+    <lightning-input onchange={handleKeyChange} label="" type="search" value={searchKey}></lightning-input>
+    </lightning-card></div>
+    
+    <lightning-card title="TRUCK BOOKING" icon-name="custom:custom31">
+        <div>
+        <template if:true={data}>
+            <lightning-datatable data={data} columns={columns} key-field="Id" onheaderaction={handleHeaderAction} onrowselection={getSelectedName}>
+                <!-- <template for:each={data} for:item="t">
+                    <p key={t.Id}>
+                        <template if:true={t.Images__c}>
+                                <lightning-formatted-rich-text value={t.Images__c}></lightning-formatted-rich-text>
+                        </template>
+                    </p>
+                    </template>
+                 -->
+                </lightning-datatable>
+            
+        </template>
+        </div>
+        <div class="movement" > 
+            <lightning-button variant="brand"  class="small" label=" << Previous" title="PREVIOUS" onclick={navigatePrevious}></lightning-button>
+            <lightning-button id="act" variant="brand"  class="small" label="Next >>" title="NEXT" onclick={handleSelect}></lightning-button>
+        </div>
+    </lightning-card>
+
+    
+    <template if:true={error}>
+        {error}
+    </template>
+</template>
